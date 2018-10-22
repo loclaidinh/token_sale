@@ -77,12 +77,14 @@ contract('DappTokenSale', function(accounts) {
 			return tokenInstance.balanceOf(admin);
 		}).then(function(balance){
 			assert.equal(balance.toNumber(), 999990, 'Return unsold token to the admin');
-			return tokenSaleInstance.tokenPrice();
-		}).then(function(price){
+			console.log("Admin balance: " + balance.toNumber());
+			//return tokenSaleInstance.tokenPrice();
+			ethBalance = web3.eth.getBalance(tokenSaleInstance.address);
+			assert.equal(ethBalance.toNumber(), 0);
+		})
+		/*.then(function(price){
 			assert.equal(price.toNumber(), 0, 'token price is reset to 0 when call self-distruct function');
-		});
-
-
+		});*/
 	})
 
 });
